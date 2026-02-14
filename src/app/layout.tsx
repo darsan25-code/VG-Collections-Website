@@ -15,13 +15,13 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vg-collections.vercel.app"), // Replace with your actual domain
-  title: "VG Collections | Timeless Elegance",
-  description: "Premium ethnic wear and designer sarees.",
+  metadataBase: new URL("https://vg-collections.app"),
+  title: "VG Collections | Premium Fashion Store",
+  description: "Discover VG Collections – Your destination for premium ethnic wear, designer sarees, and timeless elegance.",
   openGraph: {
-    title: "VG Collections | Timeless Elegance",
-    description: "Premium ethnic wear and designer sarees.",
-    url: "https://vg-collections.vercel.app",
+    title: "VG Collections | Premium Fashion Store",
+    description: "Discover VG Collections – Your destination for premium ethnic wear, designer sarees, and timeless elegance.",
+    url: "https://vg-collections.app",
     siteName: "VG Collections",
     images: [
       {
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "VG Collections | Timeless Elegance",
-    description: "Premium ethnic wear and designer sarees.",
-    images: ["/og-image.jpg"],
+    title: "VG Collections | Premium Fashion Store",
+    description: "Discover VG Collections – Your destination for premium ethnic wear, designer sarees, and timeless elegance.",
+    images: ["/og-image.png"],
   },
 };
 
