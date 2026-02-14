@@ -32,8 +32,8 @@ export function Navbar() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out font-serif",
                 isScrolled
-                    ? "bg-ivory-100/95 backdrop-blur-md shadow-sm py-3 text-maroon"
-                    : "bg-transparent py-6 text-ivory-50"
+                    ? "bg-[#FCFBF8] shadow-md py-4 text-gray-900"
+                    : "bg-transparent py-6 text-white drop-shadow-md"
             )}
         >
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
