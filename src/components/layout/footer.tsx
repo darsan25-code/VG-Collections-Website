@@ -32,7 +32,7 @@ export function Footer() {
           <div className="sm:col-span-2 lg:col-span-1 space-y-6">
             <Link href="/" aria-label="VG Collections home">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.jpeg"
                 alt="VG Collections"
                 width={140}
                 height={48}

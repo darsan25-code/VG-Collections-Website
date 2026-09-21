@@ -91,7 +91,7 @@ export function Navbar() {
             aria-label="VG Collections — Home"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo.jpeg"
               alt="VG Collections"
               width={140}
               height={48}
@@ -234,7 +234,7 @@ export function Navbar() {
               {/* Header */}
               <div className="flex items-center justify-between p-5 border-b border-ivory-200">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.jpeg"
                   alt="VG Collections"
                   width={120}
                   height={40}
