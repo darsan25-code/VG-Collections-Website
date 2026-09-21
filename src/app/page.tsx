@@ -1,30 +1,87 @@
 import { Navbar } from "@/components/layout/navbar";
-import { Hero } from "@/components/home/hero";
-import { ProductGrid } from "@/components/product/product-grid";
 import { Footer } from "@/components/layout/footer";
+import { CartDrawer } from "@/components/layout/cart-drawer";
+import { Hero } from "@/components/home/hero";
+import { FeaturedCollections } from "@/components/home/featured-collections";
+import { CategoryGrid } from "@/components/home/category-grid";
+import { BridalBanner } from "@/components/home/bridal-banner";
+import { Craftsmanship } from "@/components/home/craftsmanship";
+import { WhyUs } from "@/components/home/why-us";
+import { Testimonials } from "@/components/home/testimonials";
+import { Newsletter } from "@/components/home/newsletter";
 import { ContactSection } from "@/components/home/contact-section";
+import { ProductGrid } from "@/components/product/product-grid";
+import {
+  getFeaturedProducts,
+  getNewArrivals,
+  getBestSellers,
+} from "@/lib/products";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "VG Collections — Premium Sarees & Ethnic Wear | Chennai",
+  description:
+    "Discover timeless handwoven sarees at VG Collections, Chennai. Kanchipuram silk, Banarasi georgette, bridal collections and handloom sarees. Free shipping on orders above ₹2000.",
+};
 
 export default function Home() {
+  const featured = getFeaturedProducts();
+  const newArrivals = getNewArrivals();
+  const bestSellers = getBestSellers();
+
   return (
-    <main className="min-h-screen bg-ivory-100 selection:bg-maroon selection:text-ivory-50">
+    <>
       <Navbar />
-      <Hero />
-      <ProductGrid />
+      <CartDrawer />
 
-      {/* About / Heritage Section */}
-      <section className="py-24 bg-maroon text-ivory-50 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif mb-6">A Legacy of Weaving</h2>
-          <p className="max-w-2xl mx-auto text-lg font-light leading-relaxed opacity-90">
-            For over three decades, VG Collections has been synonymous with purity, tradition, and artistry.
-            Each saree is a masterpiece, handwoven by master artisans who breathe life into every thread.
-          </p>
-        </div>
-      </section>
+      <main id="main-content" className="min-h-screen bg-ivory-100">
+        {/* 1. Hero */}
+        <Hero />
 
-      <ContactSection />
+        {/* 2. Featured Collections — Editorial */}
+        <FeaturedCollections />
+
+        {/* 3. Category Grid */}
+        <CategoryGrid />
+
+        {/* 4. New Arrivals */}
+        <ProductGrid
+          products={newArrivals}
+          title="New Arrivals"
+          eyebrow="Just In"
+          viewAllHref="/sarees?filter=new"
+          columns={4}
+        />
+
+        {/* 5. Craftsmanship / Heritage Banner */}
+        <Craftsmanship />
+
+        {/* 6. Best Sellers */}
+        <ProductGrid
+          products={bestSellers}
+          title="Best Sellers"
+          eyebrow="Most Loved"
+          viewAllHref="/sarees?filter=bestseller"
+          columns={4}
+        />
+
+        {/* 7. Bridal Collection Banner */}
+        <BridalBanner />
+
+        {/* 8. Why VG Collections */}
+        <WhyUs />
+
+        {/* 9. Testimonials */}
+        <Testimonials />
+
+        {/* 10. Newsletter */}
+        <Newsletter />
+
+        {/* 11. Contact */}
+        <ContactSection />
+      </main>
+
       <Footer />
-    </main>
+    </>
   );
 }

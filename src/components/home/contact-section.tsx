@@ -1,117 +1,212 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
 export function ContactSection() {
-    return (
-        <section className="py-24 bg-[#f8f6f2]">
-            <div className="container mx-auto px-4">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-gold-dark text-sm uppercase tracking-[0.2em] block mb-2">Get in Touch</span>
-                    <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-4 font-bold">Visit Our Store</h2>
-                    <div className="w-24 h-1 bg-gold mx-auto" />
-                </motion.div>
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                    {/* Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="space-y-8"
-                    >
-                        <div className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-gold">
-                            <h3 className="font-serif text-2xl text-gray-900 mb-6 font-bold">VG Collection</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-maroon/10 p-3 rounded-full text-maroon">
-                                        <MapPin className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-gray-900">Address</p>
-                                        <p className="text-gray-700 leading-relaxed font-medium">
-                                            No.14/27, Thiruvalluvarpuram 2nd Street,<br />
-                                            2nd Floor, Choolaimedu,<br />
-                                            Chennai – 600094
-                                        </p>
-                                    </div>
-                                </div>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Connect to email/form service
+    setSubmitted(true);
+  };
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-maroon/10 p-3 rounded-full text-maroon">
-                                        <Phone className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-gray-900">Phone</p>
-                                        <a href="tel:9445826955" className="text-gray-700 font-medium hover:text-gold transition-colors">
-                                            +91 94458 26955
-                                        </a>
-                                    </div>
-                                </div>
+  return (
+    <section className="py-20 md:py-24 bg-ivory-100" id="contact" aria-label="Contact us">
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-14"
+        >
+          <p className="text-xs text-gold-dark uppercase tracking-[0.3em] font-bold mb-3">
+            Get in Touch
+          </p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-maroon mb-4">
+            Visit Our Store
+          </h2>
+          <div className="gold-line" />
+        </motion.div>
 
-                                <div className="flex items-start space-x-4">
-                                    <div className="bg-maroon/10 p-3 rounded-full text-maroon">
-                                        <Mail className="w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-gray-900">Email</p>
-                                        <a href="mailto:geethaperumal1206@gmail.com" className="text-gray-700 font-medium hover:text-gold transition-colors">
-                                            geethaperumal1206@gmail.com
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Contact Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100"
-                    >
-                        <h3 className="font-serif text-2xl text-gray-900 mb-2 font-bold">Send us a Message</h3>
-                        <p className="text-gray-600 mb-8 text-sm">We'd love to hear from you. Fill out the form below.</p>
-
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-bold text-gray-900">Name</label>
-                                    <input type="text" id="name" className="w-full px-4 py-3 rounded-md bg-white border border-gray-300 focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none text-gray-900" placeholder="Your Name" />
-                                </div>
-                                <div className="space-y-2">
-                                    <label htmlFor="phone" className="text-sm font-bold text-gray-900">Phone</label>
-                                    <input type="tel" id="phone" className="w-full px-4 py-3 rounded-md bg-white border border-gray-300 focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none text-gray-900" placeholder="Your Phone" />
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-bold text-gray-900">Email</label>
-                                <input type="email" id="email" className="w-full px-4 py-3 rounded-md bg-white border border-gray-300 focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none text-gray-900" placeholder="Your Email" />
-                            </div>
-                            <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-bold text-gray-900">Message</label>
-                                <textarea id="message" rows={4} className="w-full px-4 py-3 rounded-md bg-white border border-gray-300 focus:border-gold focus:ring-1 focus:ring-gold transition-all outline-none text-gray-900" placeholder="How can we help you?"></textarea>
-                            </div>
-
-                            <Button className="w-full" size="lg">
-                                <Send className="w-4 h-4 mr-2" />
-                                Send Message
-                            </Button>
-                        </form>
-                    </motion.div>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6"
+          >
+            <div className="bg-ivory-50 border border-ivory-200 rounded-sm p-7 border-l-4 border-l-gold">
+              <h3 className="font-serif text-2xl text-maroon mb-6">VG Collections</h3>
+              <div className="space-y-5">
+                {[
+                  {
+                    icon: MapPin,
+                    label: "Address",
+                    content: (
+                      <p className="text-charcoal-muted text-sm leading-relaxed">
+                        No.14/27, Thiruvalluvarpuram 2nd Street,<br />
+                        2nd Floor, Choolaimedu,<br />
+                        Chennai – 600094
+                      </p>
+                    ),
+                  },
+                  {
+                    icon: Phone,
+                    label: "Phone",
+                    content: (
+                      <a
+                        href="tel:+919445826955"
+                        className="text-charcoal-muted text-sm hover:text-gold-dark transition-colors"
+                      >
+                        +91 94458 26955
+                      </a>
+                    ),
+                  },
+                  {
+                    icon: Mail,
+                    label: "Email",
+                    content: (
+                      <a
+                        href="mailto:geethaperumal1206@gmail.com"
+                        className="text-charcoal-muted text-sm hover:text-gold-dark transition-colors break-all"
+                      >
+                        geethaperumal1206@gmail.com
+                      </a>
+                    ),
+                  },
+                ].map(({ icon: Icon, label, content }) => (
+                  <div key={label} className="flex items-start gap-4">
+                    <div className="w-9 h-9 rounded-full bg-maroon/8 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-4 h-4 text-maroon" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-widest text-charcoal mb-1">
+                        {label}
+                      </p>
+                      {content}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-        </section>
-    );
+
+            {/* Store Hours */}
+            <div className="bg-ivory-50 border border-ivory-200 rounded-sm p-6">
+              <h4 className="text-xs font-bold uppercase tracking-widest text-charcoal mb-4">
+                Store Hours
+              </h4>
+              <div className="space-y-2 text-sm">
+                {[
+                  ["Monday – Saturday", "10:00 AM – 8:00 PM"],
+                  ["Sunday", "11:00 AM – 6:00 PM"],
+                ].map(([day, time]) => (
+                  <div key={day} className="flex justify-between">
+                    <span className="text-stone">{day}</span>
+                    <span className="text-charcoal font-semibold">{time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="bg-ivory-50 border border-ivory-200 rounded-sm p-7 md:p-10"
+          >
+            <h3 className="font-serif text-2xl text-maroon mb-2">Send Us a Message</h3>
+            <p className="text-stone text-sm mb-7">
+              Whether you have a question, need styling advice, or want to book a bridal
+              consultation — we&apos;re here.
+            </p>
+
+            {submitted ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
+                <CheckCircle className="w-12 h-12 text-gold" />
+                <h4 className="font-serif text-xl text-maroon">Message Sent!</h4>
+                <p className="text-stone text-sm">
+                  Thank you for reaching out. We&apos;ll get back to you within 24 hours.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-widest text-charcoal-muted">
+                      Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Your name"
+                      className="w-full px-4 py-3 rounded-sm bg-white border border-ivory-300 focus:border-maroon outline-none transition-colors text-charcoal text-sm"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label htmlFor="contact-phone" className="text-xs font-bold uppercase tracking-widest text-charcoal-muted">
+                      Phone
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      placeholder="Your phone number"
+                      className="w-full px-4 py-3 rounded-sm bg-white border border-ivory-300 focus:border-maroon outline-none transition-colors text-charcoal text-sm"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="contact-email" className="text-xs font-bold uppercase tracking-widest text-charcoal-muted">
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="Your email address"
+                    className="w-full px-4 py-3 rounded-sm bg-white border border-ivory-300 focus:border-maroon outline-none transition-colors text-charcoal text-sm"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="contact-message" className="text-xs font-bold uppercase tracking-widest text-charcoal-muted">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    rows={4}
+                    required
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="How can we help you?"
+                    className="w-full px-4 py-3 rounded-sm bg-white border border-ivory-300 focus:border-maroon outline-none transition-colors text-charcoal text-sm resize-none"
+                  />
+                </div>
+                <Button type="submit" variant="primary" size="lg" className="w-full">
+                  <Send className="mr-2 w-4 h-4" />
+                  Send Message
+                </Button>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,36 +1,79 @@
 @import "tailwindcss";
 
-@theme {
-  --font-serif: var(--font-playfair-display), serif;
-  --font-sans: var(--font-lato), sans-serif;
+/* ============================================================
+   VG Collections — Design System
+   Premium Indian Luxury Saree Brand
+   ============================================================ */
 
+@theme {
+  /* --- Typography --- */
+  --font-serif: var(--font-playfair-display), "Georgia", serif;
+  --font-sans: var(--font-lato), "Helvetica Neue", sans-serif;
+
+  /* --- Brand Colors --- */
+  /* Ivory / Cream palette */
   --color-ivory-50: #FDFCF8;
   --color-ivory-100: #F9F7F2;
   --color-ivory-200: #F0EAE0;
   --color-ivory-300: #E6DCC8;
 
-  --color-maroon-DEFAULT: #6D213C;
+  /* Maroon / Deep Wine */
+  --color-maroon: #6D213C;
   --color-maroon-light: #842A4A;
-  --color-maroon-dark: #4A1628;
+  --color-maroon-dark: #3D1220;
+  --color-maroon-muted: #8A3A53;
 
-  --color-gold-DEFAULT: #D4AF37;
-  --color-gold-light: #E5C158;
-  --color-gold-dark: #B39225;
+  /* Gold / Champagne */
+  --color-gold: #C9A84C;
+  --color-gold-light: #DFC06E;
+  --color-gold-dark: #A8872E;
+  --color-gold-muted: #E8D5A3;
 
-  --color-charcoal: #1A1A1A;
+  /* Charcoal */
+  --color-charcoal: #1C1C1C;
+  --color-charcoal-muted: #3D3D3D;
+
+  /* Accent */
+  --color-rose-muted: #C1748A;
+  --color-beige: #E8DDD0;
+  --color-stone: #8C7B6E;
+
+  /* --- Spacing Scale --- */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* --- Border Radius --- */
+  --radius-card: 0.75rem;
+  --radius-btn: 0.125rem;
+  --radius-badge: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 4px 24px -8px rgba(109, 33, 60, 0.12);
+  --shadow-card-hover: 0 16px 48px -12px rgba(109, 33, 60, 0.22);
+  --shadow-gold: 0 0 24px rgba(201, 168, 76, 0.2);
+  --shadow-drawer: -4px 0 32px rgba(0, 0, 0, 0.15);
+
+  /* --- Animation --- */
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Base Styles */
+/* ============================================================
+   Base Reset & Defaults
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   --background: var(--color-ivory-100);
   --foreground: var(--color-charcoal);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -39,20 +82,238 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
+/* ============================================================
+   Typography
+   ============================================================ */
+
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* ============================================================
+   Premium Scrollbar
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+::-webkit-scrollbar-track {
+  background: var(--color-ivory-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-maroon-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-maroon);
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   Selection
+   ============================================================ */
+
+::selection {
+  background: var(--color-maroon);
+  color: var(--color-ivory-50);
+}
+
+/* ============================================================
+   Focus Styles — Accessible
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   Keyframe Animations
+   ============================================================ */
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0); }
+}
+
+@keyframes scroll-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* ============================================================
+   Utility Classes
+   ============================================================ */
+
+.animate-fade-up {
+  animation: fadeUp 0.8s var(--ease-premium) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-gold-pulse {
+  animation: gold-pulse 2s infinite;
+}
+
+/* ============================================================
+   Premium Image Container
+   ============================================================ */
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ivory-200);
+  aspect-ratio: 3 / 4;
+}
+
+.product-image-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-ivory-200) 0%,
+    var(--color-ivory-300) 50%,
+    var(--color-ivory-200) 100%
+  );
+}
+
+/* ============================================================
+   Gold Accent Line
+   ============================================================ */
+
+.gold-line {
+  width: 3rem;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  margin: 0 auto;
+}
+
+.gold-line-left {
+  margin: 0;
+}
+
+/* ============================================================
+   Section Containers
+   ============================================================ */
+
+.section-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding: 0 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    padding: 0 4rem;
+  }
+}
+
+/* ============================================================
+   Overlay / Backdrop
+   ============================================================ */
+
+.backdrop-premium {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* ============================================================
+   Text Balance
+   ============================================================ */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ============================================================
+   Cart Drawer
+   ============================================================ */
+
+.cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 60;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-ivory-50);
+  box-shadow: var(--shadow-drawer);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
