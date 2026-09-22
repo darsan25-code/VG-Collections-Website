@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart-context";
+
+export const viewport: Viewport = {
+  themeColor: "#3D1220",
+  colorScheme: "light",
+  width: "device-width",
+  initialScale: 1,
+};
 
 const playfair = Playfair_Display({
   variable: "--font-playfair-display",

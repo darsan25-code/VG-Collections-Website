@@ -32,7 +32,15 @@ export function Navbar() {
   const isHeroPage = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    let prev = window.scrollY > 60;
+    setIsScrolled(prev);
+    const handleScroll = () => {
+      const current = window.scrollY > 60;
+      if (current !== prev) {
+        prev = current;
+        setIsScrolled(current);
+      }
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -87,18 +95,15 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="relative flex-shrink-0"
+            className="relative flex-shrink-0 flex items-center"
             aria-label="VG Collections — Home"
           >
             <Image
-              src="/images/logo.jpeg"
+              src="/images/logo.png"
               alt="VG Collections"
               width={140}
               height={48}
-              className={cn(
-                "h-10 md:h-12 w-auto object-contain transition-all duration-300",
-                isTransparent ? "brightness-0 invert" : ""
-              )}
+              className="h-10 md:h-12 w-auto object-contain transition-transform duration-300"
               priority
             />
           </Link>
@@ -234,7 +239,7 @@ export function Navbar() {
               {/* Header */}
               <div className="flex items-center justify-between p-5 border-b border-ivory-200">
                 <Image
-                  src="/images/logo.jpeg"
+                  src="/images/logo.png"
                   alt="VG Collections"
                   width={120}
                   height={40}

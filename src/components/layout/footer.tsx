@@ -1,7 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Facebook, Youtube, Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { FooterNewsletter } from "./footer-newsletter";
+
+// Clean inline SVG for WhatsApp matching Lucide's 16x16 icon style
+function WhatsAppIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+      <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+    </svg>
+  );
+}
 
 const shopLinks = [
   { name: "Sarees", href: "/sarees" },
@@ -25,18 +45,18 @@ export function Footer() {
       {/* Top Decorative Line */}
       <div className="h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
-      <div className="section-container py-16 md:py-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+      <div className="section-container py-14 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 items-start">
 
-          {/* Brand Column */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-6">
-            <Link href="/" aria-label="VG Collections home">
+          {/* 1. Brand Column */}
+          <div className="space-y-5">
+            <Link href="/" aria-label="VG Collections home" className="inline-block">
               <Image
-                src="/images/logo.jpeg"
+                src="/images/logo.png"
                 alt="VG Collections"
                 width={140}
                 height={48}
-                className="h-11 w-auto object-contain brightness-0 invert opacity-85 hover:opacity-100 transition-opacity"
+                className="h-11 w-auto object-contain transition-opacity duration-200 hover:opacity-90"
               />
             </Link>
             <p className="text-sm font-light leading-relaxed text-ivory-300/80 max-w-xs">
@@ -45,7 +65,7 @@ export function Footer() {
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-3 text-sm">
+            <div className="space-y-2.5 text-sm pt-1">
               <div className="flex items-start gap-3 text-ivory-300/70">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5 text-gold/60" />
                 <p className="leading-relaxed">
@@ -74,41 +94,34 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Social Icons */}
-            <div className="flex items-center gap-4 pt-1">
+            {/* Social Icons — Instagram & WhatsApp Only */}
+            <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/vg_collections_trendy_sarees?stkn=b25sdHFvYmp0Z2Z6"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="VG Collections on Instagram"
-                className="w-9 h-9 rounded-full border border-ivory-300/20 flex items-center justify-center text-ivory-300/70 hover:text-gold hover:border-gold/40 transition-all"
+                title="Follow us on Instagram"
+                className="w-9 h-9 rounded-full border border-ivory-300/20 flex items-center justify-center text-ivory-300/70 hover:text-gold hover:border-gold/40 transition-all focus-visible:outline-gold"
               >
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://wa.me/919445826955"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="VG Collections on Facebook"
-                className="w-9 h-9 rounded-full border border-ivory-300/20 flex items-center justify-center text-ivory-300/70 hover:text-gold hover:border-gold/40 transition-all"
+                aria-label="Contact VG Collections on WhatsApp"
+                title="Chat with us on WhatsApp"
+                className="w-9 h-9 rounded-full border border-ivory-300/20 flex items-center justify-center text-ivory-300/70 hover:text-gold hover:border-gold/40 transition-all focus-visible:outline-gold"
               >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="VG Collections on YouTube"
-                className="w-9 h-9 rounded-full border border-ivory-300/20 flex items-center justify-center text-ivory-300/70 hover:text-gold hover:border-gold/40 transition-all"
-              >
-                <Youtube className="w-4 h-4" />
+                <WhatsAppIcon className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Shop Links */}
-          <div className="space-y-5">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/70">Shop</h4>
+          {/* 2. Shop Links */}
+          <div className="space-y-5 sm:pt-2 lg:pt-3">
+            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/80">Shop</h4>
             <ul className="space-y-3">
               {shopLinks.map((link) => (
                 <li key={link.name}>
@@ -123,9 +136,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Support Links */}
-          <div className="space-y-5">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/70">Support</h4>
+          {/* 3. Support Links */}
+          <div className="space-y-5 sm:pt-2 lg:pt-3">
+            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/80">Support</h4>
             <ul className="space-y-3">
               {supportLinks.map((link) => (
                 <li key={link.name}>
@@ -140,9 +153,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="space-y-5">
-            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/70">
+          {/* 4. Newsletter & Trust Badges */}
+          <div className="space-y-5 sm:pt-2 lg:pt-3">
+            <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-gold/80">
               Stay Connected
             </h4>
             <p className="text-sm text-ivory-300/70 leading-relaxed">
